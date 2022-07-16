@@ -1,10 +1,13 @@
 package ru.yandex.praktikum;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import ru.yandex.praktikum.constants.Constants;
+import ru.yandex.praktikum.pageobjects.MainPage;
+
 import static ru.yandex.praktikum.constants.Constants.MAIN_PAGE_URL;
 
 @RunWith(Parameterized.class)
@@ -29,16 +32,23 @@ public class QuestionAndAnswerTests extends BaseSeleniumUITest {
         };
     }
 
+    //Выношу по замечанию
+    @Before
+    public void openMainPage() {
+        new MainPage()
+                .openMainPage()
+                .clickCookieOnMainPage();
+    }
+
     //Тест для проверки ответа на вопрос
     @Test
     public void checkingQACouple() {
-        driver.get(MAIN_PAGE_URL);
         String answerFromMainPage = new MainPage()
-                .clickCookieOnMainPage()
                 .clickOnQuestionOnMainPage(String.valueOf(numberQA))
                 .getAnswerFromMainPage(String.valueOf(numberQA));
         Assert.assertEquals("Что-то пошло не так! Ответы НЕ совпадают",
                 Constants.ANSWER_LIST[numberQA], answerFromMainPage);
         System.out.println("Ожидаемый и фактический ответы на " + numberQA+ "воспрос совпадают");
+        driver.manage().deleteAllCookies();
     }
 }

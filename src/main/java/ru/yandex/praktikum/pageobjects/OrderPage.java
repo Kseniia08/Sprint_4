@@ -1,5 +1,7 @@
-package ru.yandex.praktikum;
+package ru.yandex.praktikum.pageobjects;
 import org.openqa.selenium.By;
+import ru.yandex.praktikum.BaseSeleniumPage;
+import ru.yandex.praktikum.OrderForm;
 
 
 public class OrderPage extends BaseSeleniumPage {

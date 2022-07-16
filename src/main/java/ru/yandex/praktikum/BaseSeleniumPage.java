@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 abstract public class BaseSeleniumPage {
     protected static WebDriver driver;
 
-    public  static void SetDriver(WebDriver webDriver) {
+    public  static void setDriver(WebDriver webDriver) {
         driver = webDriver;
     }
 
