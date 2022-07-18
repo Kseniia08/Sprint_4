@@ -16,7 +16,7 @@ public class MainPage extends BaseSeleniumPage {
     private final By firstOrderButton = By.xpath("//button[@class='Button_Button__ra12g']");
 
     //Кнопка "Заказать" внизу страницы
-    private final By secondOrderButton = By.xpath("//button[@class='Button_Button__ra12g Button_UltraBig__UU3Lp']");
+    private final By secondOrderButton = By.xpath("//button[@class='Button_Button__ra12g Button_Middle__1CSJM']");
 
     //Метод окрытия главной страницы сайта
     public MainPage openMainPage() {
@@ -25,7 +25,7 @@ public class MainPage extends BaseSeleniumPage {
     }
     //Принятие куки
     public MainPage clickCookieOnMainPage() {
-        if(driver.findElement(cookieButtonOnMainPage).isEnabled()){
+        if(!driver.findElements(cookieButtonOnMainPage).isEmpty()){
             driver.findElement(cookieButtonOnMainPage).click();
             return this;
         }
@@ -43,8 +43,8 @@ public class MainPage extends BaseSeleniumPage {
     /*скролл до кнопки заказа внизу страницы, чтобы избежать на этом шаге "тест падает с ошибкой
 org.openqa.selenium.NoSuchElementException: Unable to locate element: //button[@Class='Button_Button__ra12g Button_UltraBig__UU3Lp']"*/
     public void scrollUntilBottomOrderButton() {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.xpath(".//div[text()='Как это работает']")));
-    };
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.className("Home_FinishButton__1_cWm")));
+    }
 
     //Тык на вторую кнопку Заказать
     public  OrderPage  clickOnSecondOrderButton() {
